@@ -29,10 +29,10 @@
 достаточно сконфигурировать объект обработчика в классе конфигурации `HttpClientConfiguration`:
 ```` java
 @Bean
-    public HttpClient<AlbumDTO> albumDTOHttpClient(@Value("${spring.api.albums.url}") String URL,
+public HttpClient<AlbumDTO> albumDTOHttpClient(@Value("${spring.api.albums.url}") String URL,
                                                  ObjectMapper objectMapper) {
-        return new HttpClient<>(URL, objectMapper, AlbumDTO.class);
-    }
+    return new HttpClient<>(URL, objectMapper, AlbumDTO.class);
+}
 ````
 
 В качестве типа укажите DTO, с которым вы работаете.
@@ -58,22 +58,21 @@
 Дерево иерархии ролей настраивается механизмами Spring Security:
 ``` java
 @Bean
-    public RoleHierarchy roleHierarchy() {
-        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        String hierarchy =
-                        "ROLE_ADMIN > ROLE_USERS_EDITOR\n" +
-                        "ROLE_ADMIN > ROLE_POSTS_EDITOR\n" +
-                        "ROLE_ADMIN > ROLE_ALBUMS_EDITOR\n" +
-                        "ROLE_USERS_EDITOR > ROLE_USERS_VIEWER\n" +
-                        "ROLE_POSTS_EDITOR > ROLE_POSTS_VIEWER\n" +
-                        "ROLE_ALBUMS_EDITOR > ROLE_ALBUMS_VIEWER\n" +
-                        "ROLE_CLOWN > ROLE_USERS_VIEWER\n" +
-                        "ROLE_CLOWN > ROLE_POSTS_VIEWER\n" +
-                        "ROLE_CLOWN > ROLE_ALBUMS_VIEWER"
-                ;
-        roleHierarchy.setHierarchy(hierarchy);
-        return roleHierarchy;
-    }
+public RoleHierarchy roleHierarchy() {
+    RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+    String hierarchy =
+                    "ROLE_ADMIN > ROLE_USERS_EDITOR\n" +
+                    "ROLE_ADMIN > ROLE_POSTS_EDITOR\n" +
+                    "ROLE_ADMIN > ROLE_ALBUMS_EDITOR\n" +
+                    "ROLE_USERS_EDITOR > ROLE_USERS_VIEWER\n" +
+                    "ROLE_POSTS_EDITOR > ROLE_POSTS_VIEWER\n" +
+                    "ROLE_ALBUMS_EDITOR > ROLE_ALBUMS_VIEWER\n" +
+                    "ROLE_CLOWN > ROLE_USERS_VIEWER\n" +
+                    "ROLE_CLOWN > ROLE_POSTS_VIEWER\n" +
+                    "ROLE_CLOWN > ROLE_ALBUMS_VIEWER";
+    roleHierarchy.setHierarchy(hierarchy);
+    return roleHierarchy;
+}
 ```
 
 На boot этапе приложения (если `spring.security.setupRequired` установлен на true) будут 
