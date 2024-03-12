@@ -93,7 +93,7 @@
 - `CLOWN` (доступ ко всем GET методам всех обработчиков, реализована для демонстрации гибкости модели доступа)
 - `WEBSOCKET_USER` (доступ к конечной точке /ws)
 
-![img_2.png](img_2.png)
+![img_2](https://github.com/igordev-afk/vk-testcase/assets/66678952/f25ed7ec-6722-4c5b-b59e-1fcd4c65e092)
 
 ## Auditing
 При каждой попытке пользователя достучаться до определенного метода обработчика, создается новая запись в таблице журналирования.
@@ -106,14 +106,14 @@
 - `имя пользователя` (в случае, если пользователь пытается получить доступ без базовой авторизации, 
 используется дефолтный Spring Security username `anonymousUser`)
 
-![img_3.png](img_3.png)
+![img_3](https://github.com/igordev-afk/vk-testcase/assets/66678952/6a1f34af-81df-4d60-9336-13d33bb6a88a)
 
 ## Data storage
 Для хранения данных о пользователях и сохранения записей при журналировании используется PostgreSQL
 
 Демонстрация отношения таблиц:
 
-![img_4.png](img_4.png)
+![img_4](https://github.com/igordev-afk/vk-testcase/assets/66678952/6c7fd3bf-82d9-4897-afb2-2732092d2399)
 
 ## Websocket
 Реализована конечная точка `/ws` для запросов по websocket. 
