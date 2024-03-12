@@ -106,11 +106,23 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         postsEditorUser.setPassword(passwordEncoder.encode("test"));
         postsEditorUser.setRoles(Set.of(postsEditor));
 
+        Role postsViewer = roleRepo.findByName("ROLE_POSTS_VIEWER");
+        User postsViewerUser = new User();
+        postsViewerUser.setUsername("post_viewer");
+        postsViewerUser.setPassword(passwordEncoder.encode("test"));
+        postsViewerUser.setRoles(Set.of(postsViewer));
+
         Role albumsEditor = roleRepo.findByName("ROLE_ALBUMS_EDITOR");
         User albumsEditorUser = new User();
         albumsEditorUser.setUsername("album_editor");
         albumsEditorUser.setPassword(passwordEncoder.encode("test"));
         albumsEditorUser.setRoles(Set.of(albumsEditor));
+
+        Role albumsViewer = roleRepo.findByName("ROLE_ALBUMS_VIEWER");
+        User albumsViewerUser = new User();
+        albumsViewerUser.setUsername("album_viewer");
+        albumsViewerUser.setPassword(passwordEncoder.encode("test"));
+        albumsViewerUser.setRoles(Set.of(albumsViewer));
 
         Role admin = roleRepo.findByName("ROLE_ADMIN");
         User adminUser = new User();
