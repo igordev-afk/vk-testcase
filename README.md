@@ -26,7 +26,7 @@
 В качестве HTTP клиента использована библиотека `apache httpclient`
 
 Для создания ваших собственных обработчиков с основными HTTP методами 
-достаточно сконфигурировать объект обработчика в классе конфигурации `HttpClientConfiguration`:
+достаточно сконфигурировать объект клиента в классе конфигурации `HttpClientConfiguration`:
 ```` java
 @Bean
 public HttpClient<AlbumDTO> albumDTOHttpClient(@Value("${spring.api.albums.url}") String URL,
