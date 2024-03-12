@@ -26,13 +26,13 @@
 В качестве HTTP клиента использована библиотека `apache httpclient`
 
 Для создания ваших собственных обработчиков с основными HTTP методами 
-достаточно сконфигурировать объект обработчика в классе конфигурации `HttpClientConfiguration`:
+достаточно сконфигурировать объект клиента в классе конфигурации `HttpClientConfiguration`:
 ```` java
 @Bean
-    public HttpClient<AlbumDTO> albumDTOHttpClient(@Value("${spring.api.albums.url}") String URL,
+public HttpClient<AlbumDTO> albumDTOHttpClient(@Value("${spring.api.albums.url}") String URL,
                                                  ObjectMapper objectMapper) {
-        return new HttpClient<>(URL, objectMapper, AlbumDTO.class);
-    }
+    return new HttpClient<>(URL, objectMapper, AlbumDTO.class);
+}
 ````
 
 В качестве типа укажите DTO, с которым вы работаете.
@@ -58,22 +58,21 @@
 Дерево иерархии ролей настраивается механизмами Spring Security:
 ``` java
 @Bean
-    public RoleHierarchy roleHierarchy() {
-        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        String hierarchy =
-                        "ROLE_ADMIN > ROLE_USERS_EDITOR\n" +
-                        "ROLE_ADMIN > ROLE_POSTS_EDITOR\n" +
-                        "ROLE_ADMIN > ROLE_ALBUMS_EDITOR\n" +
-                        "ROLE_USERS_EDITOR > ROLE_USERS_VIEWER\n" +
-                        "ROLE_POSTS_EDITOR > ROLE_POSTS_VIEWER\n" +
-                        "ROLE_ALBUMS_EDITOR > ROLE_ALBUMS_VIEWER\n" +
-                        "ROLE_CLOWN > ROLE_USERS_VIEWER\n" +
-                        "ROLE_CLOWN > ROLE_POSTS_VIEWER\n" +
-                        "ROLE_CLOWN > ROLE_ALBUMS_VIEWER"
-                ;
-        roleHierarchy.setHierarchy(hierarchy);
-        return roleHierarchy;
-    }
+public RoleHierarchy roleHierarchy() {
+    RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+    String hierarchy =
+                    "ROLE_ADMIN > ROLE_USERS_EDITOR\n" +
+                    "ROLE_ADMIN > ROLE_POSTS_EDITOR\n" +
+                    "ROLE_ADMIN > ROLE_ALBUMS_EDITOR\n" +
+                    "ROLE_USERS_EDITOR > ROLE_USERS_VIEWER\n" +
+                    "ROLE_POSTS_EDITOR > ROLE_POSTS_VIEWER\n" +
+                    "ROLE_ALBUMS_EDITOR > ROLE_ALBUMS_VIEWER\n" +
+                    "ROLE_CLOWN > ROLE_USERS_VIEWER\n" +
+                    "ROLE_CLOWN > ROLE_POSTS_VIEWER\n" +
+                    "ROLE_CLOWN > ROLE_ALBUMS_VIEWER";
+    roleHierarchy.setHierarchy(hierarchy);
+    return roleHierarchy;
+}
 ```
 
 На boot этапе приложения (если `spring.security.setupRequired` установлен на true) будут 
@@ -93,7 +92,7 @@
 - `CLOWN` (доступ ко всем GET методам всех обработчиков, реализована для демонстрации гибкости модели доступа)
 - `WEBSOCKET_USER` (доступ к конечной точке /ws)
 
-![img_2.png](img_2.png)
+![img_2](https://github.com/igordev-afk/vk-testcase/assets/66678952/f25ed7ec-6722-4c5b-b59e-1fcd4c65e092)
 
 ## Auditing
 При каждой попытке пользователя достучаться до определенного метода обработчика, создается новая запись в таблице журналирования.
@@ -101,19 +100,19 @@
 - `метод обработчика`, к которому была попытка получить доступ
 - `ip`
 - `HTTP метод`
-- `статус (GRANTED, либо DENIED)`
+- `статус` (GRANTED, либо DENIED)
 - `время попытки`
 - `имя пользователя` (в случае, если пользователь пытается получить доступ без базовой авторизации, 
 используется дефолтный Spring Security username `anonymousUser`)
 
-![img_3.png](img_3.png)
+![img_3](https://github.com/igordev-afk/vk-testcase/assets/66678952/6a1f34af-81df-4d60-9336-13d33bb6a88a)
 
 ## Data storage
 Для хранения данных о пользователях и сохранения записей при журналировании используется PostgreSQL
 
 Демонстрация отношения таблиц:
 
-![img_4.png](img_4.png)
+![img_4](https://github.com/igordev-afk/vk-testcase/assets/66678952/6c7fd3bf-82d9-4897-afb2-2732092d2399)
 
 ## Websocket
 Реализована конечная точка `/ws` для запросов по websocket. 
