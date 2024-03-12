@@ -75,13 +75,7 @@ public RoleHierarchy roleHierarchy() {
 }
 ```
 
-На boot этапе приложения (если `spring.security.setupRequired` установлен на true) будут 
-созданы все основные роли, привилегии. Все роли получат как свои свойственные привилегии, 
-так и все привилегии, которые находятся у ролей уровнем ниже.
-
-Рекомендуется запускать приложение с данной настройкой единожды, чтобы избежать лишних select запросов на этапе boot.
-
-В моем REST API реализовано 8 ролей
+В моем REST API реализовано 9 ролей
 - `ADMIN` (доступ ко всем обработчикам)
 - `USERS_EDITOR` (доступ к POST, PUT, PATCH, DELETE методам /api/users/**)
 - `USERS_VIEWER` (доступ к GET методам /api/users/**)
@@ -93,6 +87,23 @@ public RoleHierarchy roleHierarchy() {
 - `WEBSOCKET_USER` (доступ к конечной точке /ws)
 
 ![img_2](https://github.com/igordev-afk/vk-testcase/assets/66678952/f25ed7ec-6722-4c5b-b59e-1fcd4c65e092)
+
+На boot этапе приложения (если `spring.security.setupRequired` установлен на true) будут 
+созданы все основные роли, привилегии. Все роли получат как свои свойственные привилегии, 
+так и все привилегии, которые находятся у ролей уровнем ниже.
+
+Также будут созданы пользователи со всеми основными ролями, данные от пользовательских аккаунтов предоставлены ниже в формате `ROLE: username password`:<br>
+_ROLE_ADMIN_: admin test<br>
+_ROLE_USERS_EDITOR_: user_editor test<br>
+_ROLE_USERS_VIEWER_: user_viewer test<br>
+_ROLE_POSTS_EDITOR_: post_editor test<br>
+_ROLE_POSTS_VIEWER_: post_viewer test<br>
+_ROLE_ALBUMS_EDITOR_: album_editor test<br>
+_ROLE_ALBUMS_VIEWER_: album_viewer test<br>
+_ROLE_WEBSOCKET_USER_: websocket test
+
+Рекомендуется запускать приложение с данной настройкой единожды, чтобы избежать лишних select запросов на этапе boot.
+
 
 ## Auditing
 При каждой попытке пользователя достучаться до определенного метода обработчика, создается новая запись в таблице журналирования.
