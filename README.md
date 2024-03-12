@@ -93,14 +93,15 @@ public RoleHierarchy roleHierarchy() {
 так и все привилегии, которые находятся у ролей уровнем ниже.
 
 Также будут созданы пользователи со всеми основными ролями, данные от пользовательских аккаунтов предоставлены ниже в формате `ROLE: username password`:<br>
-_ROLE_ADMIN_: admin test<br>
-_ROLE_USERS_EDITOR_: user_editor test<br>
-_ROLE_USERS_VIEWER_: user_viewer test<br>
-_ROLE_POSTS_EDITOR_: post_editor test<br>
-_ROLE_POSTS_VIEWER_: post_viewer test<br>
-_ROLE_ALBUMS_EDITOR_: album_editor test<br>
-_ROLE_ALBUMS_VIEWER_: album_viewer test<br>
-_ROLE_WEBSOCKET_USER_: websocket test
+
+_ROLE_ADMIN_:   admin test<br>
+_ROLE_USERS_EDITOR_:   user_editor test<br>
+_ROLE_USERS_VIEWER_:   user_viewer test<br>
+_ROLE_POSTS_EDITOR_:   post_editor test<br>
+_ROLE_POSTS_VIEWER_:   post_viewer test<br>
+_ROLE_ALBUMS_EDITOR_:   album_editor test<br>
+_ROLE_ALBUMS_VIEWER_:   album_viewer test<br>
+_ROLE_WEBSOCKET_USER_:   websocket test
 
 Рекомендуется запускать приложение с данной настройкой единожды, чтобы избежать лишних select запросов на этапе boot.
 
