@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: user-management
+  datasource:
+    url: jdbc:postgresql://localhost:5432/security
+    username: postgres
+    password: 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+  security:
+    validation:
+      roles: ROLE_ADMIN,
+        ROLE_USERS_EDITOR, ROLE_USERS_VIEWER,
+        ROLE_ALBUMS_EDITOR, ROLE_ALBUMS_VIEWER,
+        ROLE_POSTS_EDITOR, ROLE_POSTS_VIEWER,
+        ROLE_CLOWN
+    defaultRole: ROLE_CLOWN
+    setupRequired: true
+  cache:
+    expires-in-minutes: 15
+
+  api:
+    users:
+      url: "https://jsonplaceholder.typicode.com/users"
+    posts:
+      url: "https://jsonplaceholder.typicode.com/posts"
+    albums:
+      url: "https://jsonplaceholder.typicode.com/albums"
+  ws:
+    echo-server: "wss://echo.websocket.org/"
